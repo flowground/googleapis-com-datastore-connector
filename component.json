@@ -1,0 +1,305 @@
+{
+    "title": "Cloud Datastore",
+    "description": "Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.\n",
+    "docsUrl": "https://cloud.google.com/datastore/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/datastore/v1/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://datastore.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "datastore_projects_indexes_list": {
+            "main": "./lib/actions/datastore_projects_indexes_list.js",
+            "title": "Lists the indexes that match the specified filters.  Datastore uses an\neventually consistent query to fetch the list of indexes and may\noccasionally return stale results.",
+            "description": "Lists the indexes that match the specified filters.  Datastore uses an\neventually consistent query to fetch the list of indexes and may\noccasionally return stale results.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_indexes_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_indexes_get": {
+            "main": "./lib/actions/datastore_projects_indexes_get.js",
+            "title": "Gets an index.",
+            "description": "Gets an index.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_indexes_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_allocateIds": {
+            "main": "./lib/actions/datastore_projects_allocateIds.js",
+            "title": "Allocates IDs for the given keys, which is useful for referencing an entity\nbefore it is inserted.",
+            "description": "Allocates IDs for the given keys, which is useful for referencing an entity\nbefore it is inserted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_allocateIds.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_beginTransaction": {
+            "main": "./lib/actions/datastore_projects_beginTransaction.js",
+            "title": "Begins a new transaction.",
+            "description": "Begins a new transaction.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_beginTransaction.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_commit": {
+            "main": "./lib/actions/datastore_projects_commit.js",
+            "title": "Commits a transaction, optionally creating, deleting or modifying some\nentities.",
+            "description": "Commits a transaction, optionally creating, deleting or modifying some\nentities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_commit.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_export": {
+            "main": "./lib/actions/datastore_projects_export.js",
+            "title": "Exports a copy of all or a subset of entities from Google Cloud Datastore\nto another storage system, such as Google Cloud Storage. Recent updates to\nentities may not be reflected in the export. The export occurs in the\nbackground and its progress can be monitored and managed via the\nOperation resource that is created. The output of an export may only be\nused once the associated operation is done. If an export operation is\ncancelled before completion it may leave partial data behind in Google\nCloud Storage.",
+            "description": "Exports a copy of all or a subset of entities from Google Cloud Datastore\nto another storage system, such as Google Cloud Storage. Recent updates to\nentities may not be reflected in the export. The export occurs in the\nbackground and its progress can be monitored and managed via the\nOperation resource that is created. The output of an export may only be\nused once the associated operation is done. If an export operation is\ncancelled before completion it may leave partial data behind in Google\nCloud Storage.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_export.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_import": {
+            "main": "./lib/actions/datastore_projects_import.js",
+            "title": "Imports entities into Google Cloud Datastore. Existing entities with the\nsame key are overwritten. The import occurs in the background and its\nprogress can be monitored and managed via the Operation resource that is\ncreated. If an ImportEntities operation is cancelled, it is possible\nthat a subset of the data has already been imported to Cloud Datastore.",
+            "description": "Imports entities into Google Cloud Datastore. Existing entities with the\nsame key are overwritten. The import occurs in the background and its\nprogress can be monitored and managed via the Operation resource that is\ncreated. If an ImportEntities operation is cancelled, it is possible\nthat a subset of the data has already been imported to Cloud Datastore.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_import.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_lookup": {
+            "main": "./lib/actions/datastore_projects_lookup.js",
+            "title": "Looks up entities by key.",
+            "description": "Looks up entities by key.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_lookup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_reserveIds": {
+            "main": "./lib/actions/datastore_projects_reserveIds.js",
+            "title": "Prevents the supplied keys' IDs from being auto-allocated by Cloud\nDatastore.",
+            "description": "Prevents the supplied keys' IDs from being auto-allocated by Cloud\nDatastore.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_reserveIds.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_rollback": {
+            "main": "./lib/actions/datastore_projects_rollback.js",
+            "title": "Rolls back a transaction.",
+            "description": "Rolls back a transaction.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_rollback.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_runQuery": {
+            "main": "./lib/actions/datastore_projects_runQuery.js",
+            "title": "Queries for entities.",
+            "description": "Queries for entities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_runQuery.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_operations_delete": {
+            "main": "./lib/actions/datastore_projects_operations_delete.js",
+            "title": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
+            "description": "Deletes a long-running operation. This method indicates that the client is\nno longer interested in the operation result. It does not cancel the\noperation. If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_operations_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_operations_get": {
+            "main": "./lib/actions/datastore_projects_operations_get.js",
+            "title": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+            "description": "Gets the latest state of a long-running operation.  Clients can use this\nmethod to poll the operation result at intervals as recommended by the API\nservice.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_operations_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_operations_list": {
+            "main": "./lib/actions/datastore_projects_operations_list.js",
+            "title": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+            "description": "Lists operations that match the specified filter in the request. If the\nserver doesn't support this method, it returns `UNIMPLEMENTED`.\n\nNOTE: the `name` binding allows API services to override the binding\nto use different resource name schemes, such as `users/*/operations`. To\noverride the binding, API services can add a binding such as\n`\"/v1/{name=users/*}/operations\"` to their service configuration.\nFor backwards compatibility, the default name includes the operations\ncollection id, however overriding users must ensure the name binding\nis the parent resource, without the operations collection id.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_operations_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "datastore_projects_operations_cancel": {
+            "main": "./lib/actions/datastore_projects_operations_cancel.js",
+            "title": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+            "description": "Starts asynchronous cancellation on a long-running operation.  The server\nmakes a best effort to cancel the operation, but success is not\nguaranteed.  If the server doesn't support this method, it returns\n`google.rpc.Code.UNIMPLEMENTED`.  Clients can use\nOperations.GetOperation or\nother methods to check whether the cancellation succeeded or whether the\noperation completed despite cancellation. On successful cancellation,\nthe operation is not deleted; instead, it becomes an operation with\nan Operation.error value with a google.rpc.Status.code of 1,\ncorresponding to `Code.CANCELLED`.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/datastore_projects_operations_cancel.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

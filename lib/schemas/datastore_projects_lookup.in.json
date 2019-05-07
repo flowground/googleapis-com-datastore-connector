@@ -1,0 +1,119 @@
+{
+    "type": "object",
+    "properties": {
+        "projectId": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The request for Datastore.Lookup.",
+            "properties": {
+                "keys": {
+                    "description": "Keys of entities to look up.",
+                    "items": {
+                        "description": "A unique identifier for an entity.\nIf a key's partition ID or any of its path kinds or names are\nreserved/read-only, the key is reserved/read-only.\nA reserved/read-only key is forbidden in certain documented contexts.",
+                        "properties": {
+                            "partitionId": {
+                                "description": "Entities are partitioned into subsets, currently identified by a project\nID and namespace ID.\nQueries are scoped to a single partition.",
+                                "properties": {
+                                    "namespaceId": {
+                                        "description": "If not empty, the ID of the namespace to which the entities belong.",
+                                        "type": "string"
+                                    },
+                                    "projectId": {
+                                        "description": "The ID of the project to which the entities belong.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "path": {
+                                "description": "The entity path.\nAn entity path consists of one or more elements composed of a kind and a\nstring or numerical identifier, which identify entities. The first\nelement identifies a _root entity_, the second element identifies\na _child_ of the root entity, the third element identifies a child of the\nsecond entity, and so forth. The entities identified by all prefixes of\nthe path are called the element's _ancestors_.\n\nAn entity path is always fully complete: *all* of the entity's ancestors\nare required to be in the path along with the entity identifier itself.\nThe only exception is that in some documented cases, the identifier in the\nlast path element (for the entity) itself may be omitted. For example,\nthe last path element of the key of `Mutation.insert` may have no\nidentifier.\n\nA path can never be empty, and a path can have at most 100 elements.",
+                                "items": {
+                                    "description": "A (kind, ID/name) pair used to construct a key path.\n\nIf either name or ID is set, the element is complete.\nIf neither is set, the element is incomplete.",
+                                    "properties": {
+                                        "id": {
+                                            "description": "The auto-allocated ID of the entity.\nNever equal to zero. Values less than zero are discouraged and may not\nbe supported in the future.",
+                                            "format": "int64",
+                                            "type": "string"
+                                        },
+                                        "kind": {
+                                            "description": "The kind of the entity.\nA kind matching regex `__.*__` is reserved/read-only.\nA kind must not contain more than 1500 bytes when UTF-8 encoded.\nCannot be `\"\"`.",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "The name of the entity.\nA name matching regex `__.*__` is reserved/read-only.\nA name must not be more than 1500 bytes when UTF-8 encoded.\nCannot be `\"\"`.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "readOptions": {
+                    "description": "The options for this lookup request.",
+                    "properties": {
+                        "readConsistency": {
+                            "description": "The non-transactional read consistency to use.\nCannot be set to `STRONG` for global queries.",
+                            "enum": [
+                                "READ_CONSISTENCY_UNSPECIFIED",
+                                "STRONG",
+                                "EVENTUAL"
+                            ],
+                            "type": "string"
+                        },
+                        "transaction": {
+                            "description": "The identifier of the transaction in which to read. A\ntransaction identifier is returned by a call to\nDatastore.BeginTransaction.",
+                            "format": "byte",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

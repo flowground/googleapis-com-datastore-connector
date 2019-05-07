@@ -1,0 +1,15 @@
+{
+    "name": "googleapis-com-datastore-connector",
+    "version": "1.0.0",
+    "description": "Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.\n",
+    "main": "component.json",
+    "dependencies": {
+        "elasticio-node": "0.0.9",
+        "elasticio-sailor-nodejs": "^2.2.1",
+        "swagger-client": "^3.8.22"
+    },
+    "author": {
+        "name": "Deutsche Telekom AG"
+    },
+    "license": "Apache-2.0"
+}
